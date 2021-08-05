@@ -18,9 +18,18 @@ public class GreetingsTest {
         String name = "Bob";
         String shouldReturn = "Hello, Bob.";
         //when
-        String greetings = greetings.greet(name);
+        String sayHello = greetings.greet(name);
         //then
-        assertEquals(shouldReturn, greetings);
+        assertEquals(shouldReturn, sayHello);
     }
 
+    @Test
+    public void checkNullValue(){
+        //given
+        String shouldReturn = "Hello, my friend.";
+        //when
+        String sayHello = greetings.greet(null);
+        //then
+        assertEquals(shouldReturn,sayHello);
+    }
 }
