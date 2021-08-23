@@ -32,4 +32,25 @@ public class GreetingsTest {
         //then
         assertEquals(shouldReturn,sayHello);
     }
+
+    @Test
+    public void checkShoutingBack(){
+        //given
+        String shouldReturn = "HELLO, JERRY!";
+        //when
+        String shoutBack = greetings.greet("JERRY");
+        //then
+        assertEquals(shouldReturn,shoutBack);
+    }
+
+    @Test
+    public void checkTwoNamesGreeting(){
+        //given
+        String[] names = {"Jill", "Jane"};
+        String shouldReturn = "Hello, Jill and Jane";
+        //when
+        String greeting = greetings.greet(names);
+        //then
+        assertEquals(shouldReturn,greeting);
+    }
 }
