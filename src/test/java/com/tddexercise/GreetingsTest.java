@@ -50,7 +50,7 @@ public class GreetingsTest {
     public void checkTwoNamesGreeting() {
         //given
         String[] names = {"Jill", "Jane"};
-        String shouldReturn = "Hello, Jill and Jane";
+        String shouldReturn = "Hello, Jill and Jane.";
         //when
         String greeting = greetings.greet(names);
         //then
@@ -65,7 +65,7 @@ public class GreetingsTest {
         String[] fiveNames = {"Jill", "Jane", "Judy", "Michael", "Nicole"};
         String shouldReturnforThree = "Hello, Jill, Jane and Judy.";
         String shouldReturnforFour = "Hello, Jill, Jane, Judy and Michael.";
-        String shouldReturnforFive = "Hello, Jill, Jane, Judy, Michale and Nicole.";
+        String shouldReturnforFive = "Hello, Jill, Jane, Judy, Michael and Nicole.";
         //when
         final String threeGreet = greetings.greet(threeNames);
         final String fourGreet = greetings.greet(fourNames);

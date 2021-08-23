@@ -10,7 +10,11 @@ public class Greetings {
     }
 
     public String greet(String[] names) {
-        if(names==null)return "Hello, my friend.";
-        return String.format("Hello, %s and %s", names[0],names[1]);
+        if (names == null) return "Hello, my friend.";
+        final StringBuilder sb = new StringBuilder("Hello,");
+        for (int i = 0; i < names.length - 1; i++) {
+            sb.append(" ").append(names[i]).append(",");
+        }
+        return sb.substring(0, sb.length() - 1) + " and " + names[names.length - 1] + ".";
     }
 }
