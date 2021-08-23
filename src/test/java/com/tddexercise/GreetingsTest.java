@@ -28,7 +28,8 @@ public class GreetingsTest {
         //given
         String shouldReturn = "Hello, my friend.";
         //when
-        String sayHello = greetings.greet(null);
+        String nullValue = null;
+        String sayHello = greetings.greet(nullValue);
         //then
         assertEquals(shouldReturn,sayHello);
     }

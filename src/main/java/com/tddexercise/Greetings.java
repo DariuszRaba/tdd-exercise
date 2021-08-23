@@ -9,4 +9,8 @@ public class Greetings {
                         String.format("Hello, %s.", name);
     }
 
+    public String greet(String[] names) {
+        if(names==null)return "Hello, my friend.";
+        return String.format("Hello, %s and %s", names[0],names[1]);
+    }
 }
