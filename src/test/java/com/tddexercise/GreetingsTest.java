@@ -63,16 +63,31 @@ public class GreetingsTest {
         String[] threeNames = {"Jill", "Jane", "Judy"};
         String[] fourNames = {"Jill", "Jane", "Judy", "Michael"};
         String[] fiveNames = {"Jill", "Jane", "Judy", "Michael", "Nicole"};
-        String shouldReturnforThree = "Hello, Jill, Jane and Judy.";
-        String shouldReturnforFour = "Hello, Jill, Jane, Judy and Michael.";
-        String shouldReturnforFive = "Hello, Jill, Jane, Judy, Michael and Nicole.";
+        String shouldReturnForThree = "Hello, Jill, Jane and Judy.";
+        String shouldReturnForFour = "Hello, Jill, Jane, Judy and Michael.";
+        String shouldReturnForFive = "Hello, Jill, Jane, Judy, Michael and Nicole.";
         //when
         final String threeGreet = greetings.greet(threeNames);
         final String fourGreet = greetings.greet(fourNames);
         final String fiveGreet = greetings.greet(fiveNames);
         //then
-        assertAll(() -> assertEquals(shouldReturnforThree, threeGreet),
-                () -> assertEquals(shouldReturnforFour, fourGreet),
-                () -> assertEquals(shouldReturnforFive, fiveGreet));
+        assertAll(() -> assertEquals(shouldReturnForThree, threeGreet),
+                () -> assertEquals(shouldReturnForFour, fourGreet),
+                () -> assertEquals(shouldReturnForFive, fiveGreet));
+    }
+
+    @Test
+    public void checkMixedNormalAndShoutedNames() {
+        //given
+        String[] mixedNames1 = {"Amy", "BRIAN", "Charlotte"};
+        String[] mixedNames2 = {"AMY", "Brian", "CHARLOTTE"};
+        String shouldReturned1 = "Hello, Amy and Charlotte. AND HELLO BRIAN!";
+        String shouldReturned2 = "Hello, Brian. AND HELLO AMY AND CHARLOTTE!";
+        //when
+        final String greet1 = greetings.greet(mixedNames1);
+        final String greet2 = greetings.greet(mixedNames2);
+        //then
+        assertAll(() -> assertEquals(shouldReturned1, greet1),
+                () -> assertEquals(shouldReturned2, greet2));
     }
 }
