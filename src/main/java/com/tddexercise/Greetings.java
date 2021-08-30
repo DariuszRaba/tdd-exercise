@@ -31,6 +31,10 @@ public class Greetings {
         final ArrayList<String> noCommasNames = new ArrayList<>();
         for (String element : names
         ) {
+            if(element.contains("\"")){
+              noCommasNames.add(element.replaceAll("\"",""));
+              continue;
+            }
             for (String name : element.split(",")) {
                 noCommasNames.add(name.replaceAll("\\s", ""));
             }
