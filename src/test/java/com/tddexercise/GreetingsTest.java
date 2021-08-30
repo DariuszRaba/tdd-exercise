@@ -15,7 +15,7 @@ public class GreetingsTest {
     }
 
     @Test
-    public void checkInterpolation() {
+    public void Check_Interpolation() {
         //given
         String name = "Bob";
         String shouldReturn = "Hello, Bob.";
@@ -26,7 +26,7 @@ public class GreetingsTest {
     }
 
     @Test
-    public void checkNullValue() {
+    public void Check_NullValue() {
         //given
         String shouldReturn = "Hello, my friend.";
         //when
@@ -37,7 +37,7 @@ public class GreetingsTest {
     }
 
     @Test
-    public void checkShoutingBack() {
+    public void Check_Shouting_Back() {
         //given
         String shouldReturn = "HELLO, JERRY!";
         //when
@@ -47,7 +47,7 @@ public class GreetingsTest {
     }
 
     @Test
-    public void checkTwoNamesGreeting() {
+    public void Check_Two_Names_Greeting() {
         //given
         String[] names = {"Jill", "Jane"};
         String shouldReturn = "Hello, Jill and Jane.";
@@ -58,7 +58,7 @@ public class GreetingsTest {
     }
 
     @Test
-    public void checkMoreThenTwoNamesHandling() {
+    public void Check_More_Then_Two_Names_Handling() {
         //given
         String[] threeNames = {"Jill", "Jane", "Judy"};
         String[] fourNames = {"Jill", "Jane", "Judy", "Michael"};
@@ -77,7 +77,7 @@ public class GreetingsTest {
     }
 
     @Test
-    public void checkMixedNormalAndShoutedNames() {
+    public void Check_Mixed_Normal_And_Shouted_Names() {
         //given
         String[] mixedNames1 = {"Amy", "BRIAN", "Charlotte"};
         String[] mixedNames2 = {"AMY", "Brian", "CHARLOTTE"};
@@ -96,7 +96,7 @@ public class GreetingsTest {
     }
 
     @Test
-    public void checkNamesContainingCommas(){
+    public void Check_Names_Containing_Commas(){
         //given
         String[] namesWithCommas1 = {"Bob","Charlie, Dianne"};
         String[] namesWithCommas2 = {"Bob, Charlie, Dianne"};
@@ -113,7 +113,7 @@ public class GreetingsTest {
     }
 
     @Test
-    public void checkIntentionalCommas(){
+    public void Check_Intentional_Commas(){
         //given
         String[] namesWithIntentionalComma = {"Bob", "\"Charlie, Dianne\""};
         String shouldReturn = "Hello, Bob and Charlie, Dianne.";
