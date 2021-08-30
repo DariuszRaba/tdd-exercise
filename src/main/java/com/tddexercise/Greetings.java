@@ -13,6 +13,7 @@ public class Greetings {
 
     public String greet(String[] names) {
         if (names == null) return "Hello, my friend.";
+        names = checkNamesWithCommas(names).toArray(new String[0]);
         final ArrayList<String> lowerCaseNames = new ArrayList<>();
         final ArrayList<String> upperCaseNames = new ArrayList<>();
         for (String name : names) {
@@ -22,7 +23,19 @@ public class Greetings {
                 lowerCaseNames.add(name);
             }
         }
-        return lowerCaseNames.size() == 0 ? upperCaseGreet(upperCaseNames) : upperCaseNames.size() == 0 ? lowerCaseGreet(lowerCaseNames) : lowerCaseGreet(lowerCaseNames) + upperCaseGreet(upperCaseNames);
+        return lowerCaseNames.size() == 0 ? upperCaseGreet(upperCaseNames) : upperCaseNames.size() == 0 ?
+                lowerCaseGreet(lowerCaseNames) : lowerCaseGreet(lowerCaseNames) + upperCaseGreet(upperCaseNames);
+    }
+
+    private List<String> checkNamesWithCommas(String[] names) {
+        final ArrayList<String> noCommasNames = new ArrayList<>();
+        for (String element : names
+        ) {
+            for (String name : element.split(",")) {
+                noCommasNames.add(name.replaceAll("\\s", ""));
+            }
+        }
+        return noCommasNames;
     }
 
 
