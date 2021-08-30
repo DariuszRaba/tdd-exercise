@@ -72,4 +72,25 @@ class StringCalculatorTest {
                 () -> assertEquals(shouldReturn, sumOfNumbers3));
     }
 
+    @Test
+    public void Sum_numbers_Separated_With_Different_Delimiters() {
+        //given
+        String numbers1 = "//;\n1;2;3";
+        String numbers2 = "//&\n1&2&3";
+        String numbers3 = "//@\n1@2@3";
+        String numbers4 = "//plus\n1plus2plus3";
+        int shouldReturn = 6;
+        //when
+        final int sumOfNumbers1 = stringCalculator.add(numbers1);
+        final int sumOfNumbers2 = stringCalculator.add(numbers2);
+        final int sumOfNumbers3 = stringCalculator.add(numbers3);
+        final int sumOfNumbers4 = stringCalculator.add(numbers4);
+        //then
+        assertAll(
+                () -> assertEquals(shouldReturn, sumOfNumbers1),
+                () -> assertEquals(shouldReturn, sumOfNumbers2),
+                () -> assertEquals(shouldReturn, sumOfNumbers3),
+                () -> assertEquals(shouldReturn, sumOfNumbers4));
+    }
+
 }
