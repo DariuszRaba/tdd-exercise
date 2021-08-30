@@ -111,4 +111,15 @@ public class GreetingsTest {
                 ()-> assertEquals(shouldReturn, greet2),
                 ()-> assertEquals(shouldReturn, greet3));
     }
+
+    @Test
+    public void checkIntentionalCommas(){
+        //given
+        String[] namesWithIntentionalComma = {"Bob", "\"Charlie, Dianne\""};
+        String shouldReturn = "Hello, Bob and Charlie, Dianne.";
+        //when
+        final String greet = greetings.greet(namesWithIntentionalComma);
+        //then
+        assertEquals(shouldReturn,greet);
+    }
 }
