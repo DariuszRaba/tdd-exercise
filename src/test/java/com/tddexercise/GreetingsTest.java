@@ -82,16 +82,33 @@ public class GreetingsTest {
         String[] mixedNames1 = {"Amy", "BRIAN", "Charlotte"};
         String[] mixedNames2 = {"AMY", "Brian", "CHARLOTTE"};
         String[] mixedNames3 = {"AMY", "Brian", "CHARLOTTE", "John"};
-        String shouldReturned1 = "Hello, Amy and Charlotte. AND HELLO BRIAN!";
-        String shouldReturned2 = "Hello, Brian. AND HELLO AMY AND CHARLOTTE!";
-        String shouldReturned3 = "Hello, Brian and John. AND HELLO AMY AND CHARLOTTE!";
+        String shouldReturn1 = "Hello, Amy and Charlotte. AND HELLO BRIAN!";
+        String shouldReturn2 = "Hello, Brian. AND HELLO AMY AND CHARLOTTE!";
+        String shouldReturn3 = "Hello, Brian and John. AND HELLO AMY AND CHARLOTTE!";
         //when
         final String greet1 = greetings.greet(mixedNames1);
         final String greet2 = greetings.greet(mixedNames2);
         final String greet3 = greetings.greet(mixedNames3);
         //then
-        assertAll(() -> assertEquals(shouldReturned1, greet1),
-                () -> assertEquals(shouldReturned2, greet2),
-                ()-> assertEquals(shouldReturned3, greet3));
+        assertAll(() -> assertEquals(shouldReturn1, greet1),
+                () -> assertEquals(shouldReturn2, greet2),
+                ()-> assertEquals(shouldReturn3, greet3));
+    }
+
+    @Test
+    public void checkNamesContainingCommas(){
+        //given
+        String[] namesWithCommas1 = {"Bob","Charlie, Dianne"};
+        String[] namesWithCommas2 = {"Bob, Charlie, Dianne"};
+        String[] namesWithCommas3 = {"Bob, Charlie", "Dianne"};
+        String shouldReturn = "Hello, Bob, Charlie and Dianne.";
+        //when
+        final String greet1 = greetings.greet(namesWithCommas1);
+        final String greet2 = greetings.greet(namesWithCommas2);
+        final String greet3 = greetings.greet(namesWithCommas3);
+        //then
+        assertAll(()-> assertEquals(shouldReturn, greet1),
+                ()-> assertEquals(shouldReturn, greet2),
+                ()-> assertEquals(shouldReturn, greet3));
     }
 }
