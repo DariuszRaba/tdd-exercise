@@ -11,6 +11,6 @@ public class StringCalculator {
             case 1:
                 return Integer.parseInt(numbers);
         }
-        return Arrays.stream(numbers.split(",")).mapToInt(Integer::parseInt).sum();
+        return Arrays.stream(numbers.split("[,\n]")).mapToInt(Integer::parseInt).sum();
     }
 }
