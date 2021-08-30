@@ -33,5 +33,24 @@ class StringCalculatorTest {
                 ()-> assertEquals(shouldReturnForTwoArguments, twoArgumentsSum));
 
     }
+    @Test
+    public void Sum_Multiple_Numbers(){
+        //given
+        String numbers1 = "321,4342,432,121,3";
+        String numbers2 = "1,442,223,11,31,164,686,";
+        String numbers3 = "0,2,23,5678,641,1601,6854";
+        int shouldReturnForNumbers1 = 5_219;
+        int shouldReturnForNumbers2 = 1_558;
+        int shouldReturnForNumbers3 = 14_799;
+        //when
+        final int sumOfNumbers1 = stringCalculator.add(numbers1);
+        final int sumOfNumbers2 = stringCalculator.add(numbers2);
+        final int sumOfNumbers3 = stringCalculator.add(numbers3);
+        //then
+        assertAll(()-> assertEquals(shouldReturnForNumbers1,sumOfNumbers1),
+                ()-> assertEquals(shouldReturnForNumbers2, sumOfNumbers2),
+                ()-> assertEquals(shouldReturnForNumbers3, sumOfNumbers3));
+
+    }
 
 }
