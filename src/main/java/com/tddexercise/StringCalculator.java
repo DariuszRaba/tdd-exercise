@@ -18,7 +18,7 @@ public class StringCalculator {
         } else if (containNegativeNumber(numbers)) {
             throw new Exception(String.format("negatives not allowed [%s]", getNegativesFromInput(numbers.split("[,\n]"))));
         } else {
-            return Arrays.stream(numbers.split("[,\n]")).mapToInt(Integer::parseInt).sum();
+            return Arrays.stream(numbers.split("[,\n]")).mapToInt(Integer::parseInt).filter(n->n<1000).sum();
         }
     }
 
@@ -29,7 +29,7 @@ public class StringCalculator {
         if (containNegativeNumber(numbers)) {
             throw new Exception(String.format("negatives not allowed [%s]", getNegativesFromInput(numbersArr)));
         }
-        return Arrays.stream(numbersArr).mapToInt(Integer::parseInt).sum();
+        return Arrays.stream(numbersArr).mapToInt(Integer::parseInt).filter(n->n<1000).sum();
     }
 
     private boolean containNegativeNumber(String numbers) {
