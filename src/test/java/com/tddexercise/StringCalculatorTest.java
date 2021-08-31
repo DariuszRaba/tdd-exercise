@@ -1,7 +1,9 @@
 package com.tddexercise;
 
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,7 +17,7 @@ class StringCalculatorTest {
     }
 
     @Test
-    public void Sum_Arguments_Variants_Test() {
+    public void Sum_Arguments_Variants_Test() throws Exception {
         //given
         String emptyString = "";
         String oneArgument = "1";
@@ -35,7 +37,7 @@ class StringCalculatorTest {
     }
 
     @Test
-    public void Sum_Multiple_Numbers() {
+    public void Sum_Multiple_Numbers() throws Exception {
         //given
         String numbers1 = "321,4342,432,121,3";
         String numbers2 = "1,442,223,11,31,164,686,";
@@ -55,7 +57,7 @@ class StringCalculatorTest {
     }
 
     @Test
-    public void Sum_Numbers_Separated_With_New_Line() {
+    public void Sum_Numbers_Separated_With_New_Line() throws Exception {
         //given
         String numbers1 = "1\n2,3";
         String numbers2 = "1,2\n3";
@@ -73,7 +75,7 @@ class StringCalculatorTest {
     }
 
     @Test
-    public void Sum_numbers_Separated_With_Different_Delimiters() {
+    public void Sum_numbers_Separated_With_Different_Delimiters() throws Exception {
         //given
         String numbers1 = "//;\n1;2;3";
         String numbers2 = "//&\n1&2&3";
@@ -91,6 +93,31 @@ class StringCalculatorTest {
                 () -> assertEquals(shouldReturn, sumOfNumbers2),
                 () -> assertEquals(shouldReturn, sumOfNumbers3),
                 () -> assertEquals(shouldReturn, sumOfNumbers4));
+    }
+
+    @Test
+    public void Sum_Negative_Should_Throw_Exception() {
+        //given
+        String negativeNumbersInput = "-1,3\n-9,9";
+        String negativeNumbersWithDelimiterInput = "//@\n-1@3@-9@9@-18";
+        String negatives = "-1,-9";
+        String negativesWithDelimiter = "-1,-9,-18";
+        String shouldReturn = String.format("negatives not allowed [%s]", negatives);
+        String shouldReturnForNumbersWithDelimiter = String.format("negatives not allowed [%s]", negativesWithDelimiter);
+        //when
+        try {
+            stringCalculator.add(negativeNumbersInput);
+            throw new Exception("Expected exception to be thrown");
+        } catch (Exception e) {
+            //then
+            assertEquals(shouldReturn, e.getMessage());
+        }
+        try {
+            stringCalculator.add(negativeNumbersWithDelimiterInput);
+            throw new Exception("Expected exception to be thrown");
+        }catch (Exception e){
+            assertEquals(shouldReturnForNumbersWithDelimiter,e.getMessage());
+        }
     }
 
 }
