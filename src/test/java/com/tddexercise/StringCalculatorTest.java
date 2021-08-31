@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.stream.IntStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringCalculatorTest {
@@ -118,6 +120,24 @@ class StringCalculatorTest {
         }catch (Exception e){
             assertEquals(shouldReturnForNumbersWithDelimiter,e.getMessage());
         }
+    }
+
+    @Test
+    public void Count_Add_Method_Invocation() {
+        //given
+        String numbers = "1,2,89";
+        int counter = 7;
+        //when
+        IntStream.range(0,counter).forEach(e -> {
+            try {
+                stringCalculator.add(numbers);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        });
+        //then
+        assertEquals(counter,stringCalculator.getCalledCount());
+
     }
 
 }
