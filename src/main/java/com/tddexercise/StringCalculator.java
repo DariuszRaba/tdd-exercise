@@ -4,8 +4,10 @@ import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
+    private int addingCounter;
 
     public int add(String numbers) throws Exception {
+        addingCounter++;
         if (numbers.startsWith("//")) {
             return sumNumbersWithCustomDelimiter(numbers);
         }
@@ -41,5 +43,9 @@ public class StringCalculator {
             if (Integer.parseInt(number) < 0) sb.append(number).append(",");
         }
         return sb.substring(0, sb.length() - 1);
+    }
+
+    public int getCalledCount() {
+        return this.addingCounter;
     }
 }
