@@ -41,12 +41,12 @@ class StringCalculatorTest {
     @Test
     public void Sum_Multiple_Numbers() throws Exception {
         //given
-        String numbers1 = "321,4342,432,121,3";
+        String numbers1 = "321,342,432,121,3";
         String numbers2 = "1,442,223,11,31,164,686,";
-        String numbers3 = "0,2,23,5678,641,1601,6854";
-        int shouldReturnForNumbers1 = 5_219;
+        String numbers3 = "0,2,23,678,641,601,854";
+        int shouldReturnForNumbers1 = 1_219;
         int shouldReturnForNumbers2 = 1_558;
-        int shouldReturnForNumbers3 = 14_799;
+        int shouldReturnForNumbers3 = 2_799;
         //when
         final int sumOfNumbers1 = stringCalculator.add(numbers1);
         final int sumOfNumbers2 = stringCalculator.add(numbers2);
@@ -117,8 +117,8 @@ class StringCalculatorTest {
         try {
             stringCalculator.add(negativeNumbersWithDelimiterInput);
             throw new Exception("Expected exception to be thrown");
-        }catch (Exception e){
-            assertEquals(shouldReturnForNumbersWithDelimiter,e.getMessage());
+        } catch (Exception e) {
+            assertEquals(shouldReturnForNumbersWithDelimiter, e.getMessage());
         }
     }
 
@@ -128,7 +128,7 @@ class StringCalculatorTest {
         String numbers = "1,2,89";
         int counter = 7;
         //when
-        IntStream.range(0,counter).forEach(e -> {
+        IntStream.range(0, counter).forEach(e -> {
             try {
                 stringCalculator.add(numbers);
             } catch (Exception exception) {
@@ -136,8 +136,23 @@ class StringCalculatorTest {
             }
         });
         //then
-        assertEquals(counter,stringCalculator.getCalledCount());
+        assertEquals(counter, stringCalculator.getCalledCount());
 
+    }
+
+    @Test
+    public void Ignore_Numbers_Biger_Than_1000() throws Exception {
+        //given
+        String numbers1 = "2,1001";
+        String numbers2 = "//@\n2@1001";
+        int result = 2;
+
+        //when
+        final int sum1 = stringCalculator.add(numbers1);
+        final int sum2 = stringCalculator.add(numbers2);
+        //then
+        assertAll(() -> assertEquals(result, sum1),
+                () -> assertEquals(result, sum2));
     }
 
 }
