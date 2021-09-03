@@ -79,10 +79,10 @@ class StringCalculatorTest {
     @Test
     public void Sum_numbers_Separated_With_Different_Delimiters() throws Exception {
         //given
-        String numbers1 = "//;\n1;2;3";
-        String numbers2 = "//&\n1&2&3";
-        String numbers3 = "//@\n1@2@3";
-        String numbers4 = "//plus\n1plus2plus3";
+        String numbers1 = "//[;]\n1;2;3";
+        String numbers2 = "//[&]\n1&2&3";
+        String numbers3 = "//[@]\n1@2@3";
+        String numbers4 = "//[plus]\n1plus2plus3";
         int shouldReturn = 6;
         //when
         final int sumOfNumbers1 = stringCalculator.add(numbers1);
@@ -101,7 +101,7 @@ class StringCalculatorTest {
     public void Sum_Negative_Should_Throw_Exception() {
         //given
         String negativeNumbersInput = "-1,3\n-9,9";
-        String negativeNumbersWithDelimiterInput = "//@\n-1@3@-9@9@-18";
+        String negativeNumbersWithDelimiterInput = "//[@]\n-1@3@-9@9@-18";
         String negatives = "-1,-9";
         String negativesWithDelimiter = "-1,-9,-18";
         String shouldReturn = String.format("negatives not allowed [%s]", negatives);
@@ -144,7 +144,7 @@ class StringCalculatorTest {
     public void Ignore_Numbers_Biger_Than_1000() throws Exception {
         //given
         String numbers1 = "2,1001";
-        String numbers2 = "//@\n2@1001";
+        String numbers2 = "//[@]\n2@1001";
         int result = 2;
 
         //when
@@ -153,6 +153,17 @@ class StringCalculatorTest {
         //then
         assertAll(() -> assertEquals(result, sum1),
                 () -> assertEquals(result, sum2));
+    }
+
+    @Test
+    public void Delimiter_Format_Test() throws Exception {
+        //given
+        String numbers = "//[***][%][plus]\n1***2%3plus1";
+        int result = 7;
+        //when
+        final int sum = stringCalculator.add(numbers);
+        //then
+        assertEquals(result,sum);
     }
 
 }
